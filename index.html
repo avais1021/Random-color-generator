@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Color Generator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 1s linear;
+        }
+
+        .box {
+            width: 40%;
+            height: 150px;
+            box-shadow: 8px 8px 10px rgb(90, 89, 89), inset 8px 8px 10px rgb(66, 66, 67);
+            border: 2px black solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .box h2 {
+            font-size: 30px;
+            letter-spacing: 3px;
+            color: black;
+            background: #b3c6ff;
+            width: 200px;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .box #btn {
+            padding: 8px 15px;
+            font-size: 20px;
+            color: red;
+            font-weight: bold;
+            border-radius: 9px;
+            letter-spacing: 2px;
+        }
+        .box #btn:hover{
+            background-color: #d6d6d6;
+        }
+
+        @media screen and (max-width : 767.9px){
+            .box {
+                width: 70%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="box">
+        <h2 id="colorId">#fff</h2>
+        <button id="btn">Click Here</button>
+    </div>
+
+
+
+
+    <script>
+       const btn = document.getElementById("btn"); 
+
+       
+       const getColor = () =>{
+            const randomNumber = Math.floor(Math.random()*16777215);
+            const randomCode = "#" + randomNumber.toString(16);
+            document.body.style.backgroundColor = randomCode;
+            document.getElementById("colorId").innerText= randomCode;
+            console.log(randomNumber ,randomCode);
+            navigator.clipboard.writeText(randomCode);  
+        }
+
+        btn.addEventListener("click" , getColor);
+        </script>
+</body>
+
+</html>
