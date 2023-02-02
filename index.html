@@ -38,12 +38,32 @@
             background-color: white;
         }
 
-        .clipboard {
+        .imgPar {
+            width: 45px;
+            height: 30px;
+            background: rgb(0, 0, 0, 0.4);
+            border-radius: 5px;
             position: absolute;
             top: 31px;
             width: 45px;
             right: 10px;
             display: none;
+        }
+
+        .imgPar:hover::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(0, 0, 0, 0.4);
+
+        }
+
+        .clipboard {
+            width: 100%;
+            height: 100%;
         }
 
         .box h2 {
@@ -83,7 +103,9 @@
     <div class="box">
         <h2 id="colorId"></h2>
         <button id="btn">Click Here</button>
-        <img class="clipboard" src="copyIcon.png" alt="">
+        <div class="imgPar">
+            <img class="clipboard" src="copyIcon.png" alt="">
+        </div>
     </div>
 
 
@@ -91,7 +113,7 @@
 
     <script>
         const btn = document.getElementById("btn");
-        const clipboard = document.getElementsByClassName("clipboard")[0];
+        const imgPar = document.getElementsByClassName("imgPar")[0];
 
 
         const getColor = () => {
@@ -99,9 +121,9 @@
             const randomCode = "#" + randomNumber.toString(16);
             document.body.style.backgroundColor = randomCode;
             document.getElementById("colorId").innerText = randomCode;
-            clipboard.style.display = "block";
+            imgPar.style.display = "block";
             console.log(randomNumber, randomCode);
-            clipboard.addEventListener("click" , function(){
+            imgPar.addEventListener("click", function () {
                 navigator.clipboard.writeText(randomCode);
             })
         }
