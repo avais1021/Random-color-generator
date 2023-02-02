@@ -34,13 +34,23 @@
             align-items: center;
             flex-direction: column;
             gap: 15px;
+            position: relative;
+            background-color: white;
+        }
+
+        .clipboard {
+            position: absolute;
+            top: 31px;
+            width: 45px;
+            right: 10px;
+            display: none;
         }
 
         .box h2 {
             font-size: 30px;
             letter-spacing: 3px;
             color: black;
-            background: #b3c6ff;
+            background: white;
             width: 200px;
             text-align: center;
             padding-top: 10px;
@@ -54,11 +64,12 @@
             border-radius: 9px;
             letter-spacing: 2px;
         }
-        .box #btn:hover{
+
+        .box #btn:hover {
             background-color: #d6d6d6;
         }
 
-        @media screen and (max-width : 767.9px){
+        @media screen and (max-width : 767.9px) {
             .box {
                 width: 70%;
             }
@@ -70,28 +81,35 @@
 
 
     <div class="box">
-        <h2 id="colorId">#fff</h2>
+        <h2 id="colorId"></h2>
         <button id="btn">Click Here</button>
+        <img class="clipboard" src="copyIcon.png" alt="">
     </div>
 
 
 
 
     <script>
-       const btn = document.getElementById("btn"); 
+        const btn = document.getElementById("btn");
+        const clipboard = document.getElementsByClassName("clipboard")[0];
 
-       
-       const getColor = () =>{
-            const randomNumber = Math.floor(Math.random()*16777215);
+
+        const getColor = () => {
+            const randomNumber = Math.floor(Math.random() * 16777215);
             const randomCode = "#" + randomNumber.toString(16);
             document.body.style.backgroundColor = randomCode;
-            document.getElementById("colorId").innerText= randomCode;
-            console.log(randomNumber ,randomCode);
-            navigator.clipboard.writeText(randomCode);  
+            document.getElementById("colorId").innerText = randomCode;
+            clipboard.style.display = "block";
+            console.log(randomNumber, randomCode);
+            clipboard.addEventListener("click" , function(){
+                navigator.clipboard.writeText(randomCode);
+                alert(900)
+            })
         }
 
-        btn.addEventListener("click" , getColor);
-        </script>
+
+        btn.addEventListener("click", getColor);
+    </script>
 </body>
 
 </html>
